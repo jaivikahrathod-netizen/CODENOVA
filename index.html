@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Timetable Planner</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="header">
+        <div>
+            <p class="eyebrow">STUDY SMARTER</p>
+            <h1>Smart Timetable Planner</h1>
+            <p class="subtitle">Plan your work. Manage your time. Reach your goals.</p>
+        </div>
+    </header>
+
+    <main class="container">
+
+        <section class="card">
+            <h2>1. Academic Details</h2>
+
+            <div class="form-grid">
+                <div>
+                    <label for="year">Engineering Year</label>
+                    <select id="year">
+                        <option value="1">1st Year</option>
+                        <option value="2">2nd Year</option>
+                        <option value="3">3rd Year</option>
+                        <option value="4">4th Year</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label for="semester">Semester</label>
+                    <select id="semester">
+                        <option value="1">Semester 1</option>
+                        <option value="2">Semester 2</option>
+                        <option value="3" selected>Semester 3</option>
+                        <option value="4">Semester 4</option>
+                        <option value="5">Semester 5</option>
+                        <option value="6">Semester 6</option>
+                        <option value="7">Semester 7</option>
+                        <option value="8">Semester 8</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label for="branch">Branch</label>
+                    <select id="branch">
+                        <option value="AIML">Artificial Intelligence & ML</option>
+                        <option value="CSE">Computer Science</option>
+                        <option value="ISE">Information Science</option>
+                        <option value="ECE">Electronics & Communication</option>
+                        <option value="ME">Mechanical</option>
+                        <option value="CIVIL">Civil</option>
+                    </select>
+                </div>
+            </div>
+
+            <button type="button" id="loadSubjectsBtn" class="secondary-btn">
+                Load Subjects
+            </button>
+
+            <h3>Select Your Subjects</h3>
+            <p class="help-text">Choose all the subjects you want to include.</p>
+            <div id="subjectList" class="subject-list">
+                <p class="help-text">Click "Load Subjects" to see the available subjects.</p>
+            </div>
+
+            <div class="custom-subject">
+                <label for="customSubject">Add another subject</label>
+                <div class="inline-form">
+                    <input type="text" id="customSubject" placeholder="Enter subject name">
+                    <button type="button" id="addSubjectBtn">Add</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="card">
+            <h2>2. Add Your Tasks</h2>
+            <p class="help-text">Add multiple tasks for different subjects.</p>
+
+            <div class="form-grid">
+                <div>
+                    <label for="taskSubject">Subject</label>
+                    <select id="taskSubject">
+                        <option value="">Select a subject first</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label for="taskType">Task Type</label>
+                    <select id="taskType">
+                        <option>Assignment</option>
+                        <option>Quiz</option>
+                        <option>Examination</option>
+                        <option>Unit Test</option>
+                        <option>Project</option>
+                        <option>Lab Record</option>
+                        <option>Presentation</option>
+                        <option>Revision</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label for="taskName">Task / Topic Name</label>
+                    <input type="text" id="taskName" placeholder="Example: Unit 2 preparation">
+                </div>
+
+                <div>
+                    <label for="deadline">Deadline</label>
+                    <input type="date" id="deadline">
+                </div>
+
+                <div>
+                    <label for="taskHours">Remaining Work (hours)</label>
+                    <input type="number" id="taskHours" min="0.5" step="0.5" value="2">
+                </div>
+
+                <div>
+                    <label for="completion">Already Completed (%)</label>
+                    <input type="number" id="completion" min="0" max="100" value="0">
+                </div>
+
+                <div>
+                    <label for="difficulty">Difficulty</label>
+                    <select id="difficulty">
+                        <option value="1">Easy</option>
+                        <option value="2" selected>Medium</option>
+                        <option value="3">Difficult</option>
+                    </select>
+                </div>
+            </div>
+
+            <button type="button" id="addTaskBtn">Add Task</button>
+
+            <h3>Your Added Tasks</h3>
+            <div id="taskList" class="task-list">
+                <p class="help-text">Your tasks will appear here.</p>
+            </div>
+        </section>
+
+        <section class="card">
+            <h2>3. Study Time Settings</h2>
+
+            <div class="form-grid">
+                <div>
+                    <label for="studyStart">Study Start Time</label>
+                    <input type="time" id="studyStart" value="17:00">
+                </div>
+
+                <div>
+                    <label for="studyEnd">Study End Time</label>
+                    <input type="time" id="studyEnd" value="21:00">
+                </div>
+
+                <div>
+                    <label for="sessionDuration">Study Session (minutes)</label>
+                    <input type="number" id="sessionDuration" min="15" value="60">
+                </div>
+
+                <div>
+                    <label for="breakDuration">Break Between Sessions (minutes)</label>
+                    <input type="number" id="breakDuration" min="0" value="10">
+                </div>
+            </div>
+
+            <button type="button" id="generateBtn" class="generate-btn">
+                Generate My Timetable
+            </button>
+        </section>
+
+        <section class="card">
+            <h2>4. Deadline Alerts</h2>
+            <div id="deadlineAlerts">
+                <p class="help-text">Your deadline alerts will appear here after adding tasks.</p>
+            </div>
+        </section>
+
+        <section class="card timetable-card">
+            <h2>5. Your Study Timetable</h2>
+            <p class="help-text">
+                Tick the checkbox when you complete a scheduled study session.
+            </p>
+            <div id="timetable">
+                <p class="help-text">Your generated timetable will appear here.</p>
+            </div>
+        </section>
+
+        <!-- Progress is intentionally the last section -->
+        <section class="card progress-card">
+            <h2>6. Overall Progress</h2>
+            <div id="progressSection">
+                <p class="help-text">Generate a timetable to see your progress here.</p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>Smart Timetable Planner | Study with a plan, succeed with confidence.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
